@@ -7,12 +7,16 @@ function Skills() {
       skills: ["PHP", "Laravel", "MySQL", "PostgreSQL", "REST APIs", "Authentication"]
     },
     {
+      title: "Software Architecture",
+      skills: ["hexagonal architecture", "union architecture", "clean architecture", "mvc"]
+    },
+    {
       title: "Frontend Development",
       skills: ["React", "JavaScript", "HTML5", "CSS3", "Responsive Design", "Vite"]
     },
     {
       title: "Tools & Technologies",
-      skills: ["Git", "Docker", "Redis", "Webpack", "npm", "Composer"]
+      skills: ["Git", "Redis", "Webpack", "npm", "Composer"]
     }
   ];
 

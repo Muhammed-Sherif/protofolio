@@ -64,6 +64,11 @@
 
 .info-icon {
   font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667eea;
+  min-width: 2rem;
 }
 
 .info-text h3 {

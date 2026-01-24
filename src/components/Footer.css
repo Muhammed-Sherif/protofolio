@@ -16,6 +16,22 @@
 }
 
 .footer p {
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   font-size: 0.95rem;
+}
+
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-links a {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #764ba2;
+  text-decoration: underline;
 }

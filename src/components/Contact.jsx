@@ -1,3 +1,4 @@
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import './Contact.css';
 
 function Contact() {
@@ -13,27 +14,36 @@ function Contact() {
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
-              <div className="info-icon">✉️</div>
+              <div className="info-icon"><FaEnvelope /></div>
               <div className="info-text">
                 <h3>Email</h3>
-                <a href="mailto:your.email@example.com">your.email@example.com</a>
+                <a href="mailto:muhammed.shereaf@gmail.com">muhammed.shereaf@gmail.com</a>
               </div>
             </div>
             <div className="info-item">
-              <div className="info-icon">🌐</div>
+              <div className="info-icon"><FaGithub /></div>
               <div className="info-text">
                 <h3>GitHub</h3>
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-                  github.com/yourusername
+                <a href="https://github.com/Muhammed-Sherif" target="_blank" rel="noopener noreferrer">
+                  github.com/Muhammed-Sherif
                 </a>
               </div>
             </div>
             <div className="info-item">
-              <div className="info-icon">💼</div>
+              <div className="info-icon"><FaLinkedin /></div>
               <div className="info-text">
                 <h3>LinkedIn</h3>
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/yourusername
+                <a href="https://linkedin.com/in/mohamed-sherif-446994392/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/mohamed-sherif-446994392/
+                </a>
+              </div>
+            </div>
+            <div className="info-item">
+              <div className="info-icon"><FaWhatsapp /></div>
+              <div className="info-text">
+                <h3>WhatsApp</h3>
+                <a href="https://wa.me/201099148624" target="_blank" rel="noopener noreferrer">
+                  +20 109 914 8624
                 </a>
               </div>
             </div>

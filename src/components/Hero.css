@@ -35,12 +35,20 @@
 .hero-profile {
   margin-bottom: 2rem;
   margin-top: 6rem;
-  animation: fadeInDown 1s ease-out;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-image {
-  width: 180px;
-  height: 180px;
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.profile-image-container {
+  width: 434px;
+  height: 467px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.2);
@@ -48,11 +56,6 @@
   transition: all 0.3s ease;
 }
 
-.profile-image:hover {
-  transform: scale(1.05);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-}
 
 @keyframes fadeInUp {
   from {

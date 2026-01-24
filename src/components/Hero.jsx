@@ -5,7 +5,9 @@ function Hero() {
     <section className="hero">
       <div className="hero-content">
         <div className="hero-profile">
-          <img src="/profile.jpg" alt="Profile" className="profile-image" />
+          <div className="profile-image-container">
+              <img src="/profile.jpg" alt="Profile" className="profile-image" />
+          </div>
         </div>
         <h1 className="hero-title">
           <span className="gradient-text">Full-Stack Developer</span>
