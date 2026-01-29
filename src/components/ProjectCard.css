@@ -106,8 +106,8 @@
 }
 
 .tag {
-  background: #2a2a2a;
-  color: #ffffff;
+  background: #080a14;
+  border: 1px #5d6274 solid;  color: #ffffff;
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
