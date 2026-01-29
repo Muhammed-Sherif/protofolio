@@ -1,15 +1,37 @@
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import './Contact.css';
 
-function Contact() {
+function Contact({ contact }) {
+  const {
+    title = "Let's Work Together",
+    subtitle =
+      "Ready to start your next project? Get in touch and let's create something amazing.",
+    email = 'hello@example.com',
+    githubUrl,
+    githubLabel,
+    linkedinUrl,
+    linkedinLabel,
+    whatsappNumber,
+    whatsappUrl,
+    benefits = []
+  } = contact || {};
+
+  const resolvedGithubUrl = githubUrl || 'https://github.com/';
+  const resolvedGithubLabel =
+    githubLabel || resolvedGithubUrl.replace('https://', '');
+  const resolvedLinkedinUrl = linkedinUrl || 'https://linkedin.com/';
+  const resolvedLinkedinLabel =
+    linkedinLabel || resolvedLinkedinUrl.replace('https://', '');
+  const resolvedWhatsappUrl =
+    whatsappUrl ||
+    (whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}` : '');
+
   return (
     <section id="contact" className="contact">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Let's Work Together</h2>
-          <p className="section-subtitle">
-            Ready to start your next project? Get in touch and let's create something amazing.
-          </p>
+          <h2 className="section-title">{title}</h2>
+          <p className="section-subtitle">{subtitle}</p>
         </div>
         <div className="contact-content">
           <div className="contact-info">
@@ -17,15 +39,19 @@ function Contact() {
               <div className="info-icon"><FaEnvelope /></div>
               <div className="info-text">
                 <h3>Email</h3>
-                <a href="mailto:muhammed.shereaf@gmail.com">muhammed.shereaf@gmail.com</a>
+                <a href={`mailto:${email}`}>{email}</a>
               </div>
             </div>
             <div className="info-item">
               <div className="info-icon"><FaGithub /></div>
               <div className="info-text">
                 <h3>GitHub</h3>
-                <a href="https://github.com/Muhammed-Sherif" target="_blank" rel="noopener noreferrer">
-                  github.com/Muhammed-Sherif
+                <a
+                  href={resolvedGithubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {resolvedGithubLabel}
                 </a>
               </div>
             </div>
@@ -33,8 +59,12 @@ function Contact() {
               <div className="info-icon"><FaLinkedin /></div>
               <div className="info-text">
                 <h3>LinkedIn</h3>
-                <a href="https://linkedin.com/in/mohamed-sherif-446994392/" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/mohamed-sherif-446994392/
+                <a
+                  href={resolvedLinkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {resolvedLinkedinLabel}
                 </a>
               </div>
             </div>
@@ -42,21 +72,30 @@ function Contact() {
               <div className="info-icon"><FaWhatsapp /></div>
               <div className="info-text">
                 <h3>WhatsApp</h3>
-                <a href="https://wa.me/201099148624" target="_blank" rel="noopener noreferrer">
-                  +20 109 914 8624
-                </a>
+                {resolvedWhatsappUrl ? (
+                  <a
+                    href={resolvedWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {whatsappNumber || resolvedWhatsappUrl}
+                  </a>
+                ) : (
+                  <span>{whatsappNumber || 'Add a WhatsApp number'}</span>
+                )}
               </div>
             </div>
           </div>
           <div className="cta-box">
             <h3>Why Work With Me?</h3>
             <ul className="benefits-list">
-              <li>✨ High-quality, scalable code</li>
-              <li>🚀 Fast turnaround times</li>
-              <li>💡 Creative problem solving</li>
-              <li>📱 Responsive & modern design</li>
-              <li>🔒 Security-focused development</li>
-              <li>🤝 Clear communication</li>
+              {benefits.length > 0 ? (
+                benefits.map((benefit, index) => (
+                  <li key={`${benefit}-${index}`}>{benefit}</li>
+                ))
+              ) : (
+                <li>Tell clients why working with you is valuable.</li>
+              )}
             </ul>
           </div>
         </div>

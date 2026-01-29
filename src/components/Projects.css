@@ -1,6 +1,6 @@
 .projects {
   padding: 5rem 2rem;
-  background: #0a0a0a;
+  background: linear-gradient(180deg, rgba(10, 14, 26, 0.98), rgba(4, 7, 16, 0.98));
 }
 
 .container {

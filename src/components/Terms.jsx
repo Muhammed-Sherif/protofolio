@@ -1,11 +1,69 @@
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import './Terms.css';
 
-function Terms() {
+function Terms({ terms, contact }) {
+  const title = terms?.title || 'Terms and Conditions - Freelance Services';
+  const contentHtml = terms?.contentHtml;
+  const contentHtmlAr = terms?.contentHtmlAr;
+  const email = contact?.email || 'hello@example.com';
+  const whatsappNumber = contact?.whatsappNumber || '';
+  const whatsappUrl =
+    contact?.whatsappUrl ||
+    (whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}` : '');
+
+  if (contentHtml || contentHtmlAr) {
+    return (
+      <div className="terms-page">
+        <div className="container">
+          <h1 className="page-title">{title}</h1>
+          {contentHtml ? (
+            <section
+              className="terms-section"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+          ) : null}
+          {contentHtmlAr ? (
+            <section
+              className="terms-section arabic"
+              dir="rtl"
+              dangerouslySetInnerHTML={{ __html: contentHtmlAr }}
+            />
+          ) : null}
+          <section className="terms-contact">
+            <h2 className="contact-title">Get in Touch</h2>
+            <p className="contact-subtitle">
+              For inquiries or to start a project, reach out via:
+            </p>
+            <div className="contact-links">
+              {whatsappUrl ? (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link whatsapp"
+                >
+                  <span className="contact-icon"><FaWhatsapp /></span>
+                  <span>WhatsApp: {whatsappNumber || whatsappUrl}</span>
+                </a>
+              ) : null}
+              <a
+                href={`mailto:${email}`}
+                className="contact-link email"
+              >
+                <span className="contact-icon"><FaEnvelope /></span>
+                <span>{email}</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="terms-page">
       <div className="container">
-        <h1 className="page-title">Terms and Conditions – Freelance Services</h1>
+        <h1 className="page-title">{title}</h1>
         
         {/* English Version */}
         <section className="terms-section">
@@ -169,18 +227,25 @@ function Terms() {
           <p><strong>يُعد دفع العربون أو بدء العمل قبولًا كاملًا لجميع الشروط والأحكام.</strong></p>
         </section>
 
-        {/* Contact Section */}
+                {/* Contact Section */}
         <section className="terms-contact">
           <h2 className="contact-title">Get in Touch</h2>
           <p className="contact-subtitle">For inquiries or to start a project, reach out via:</p>
           <div className="contact-links">
-            <a href="https://wa.me/201099148624?text=أوافق%20علي%20الشروط%20والاحكام" target="_blank" rel="noopener noreferrer" className="contact-link whatsapp">
-              <span className="contact-icon"><FaWhatsapp /></span>
-              <span>WhatsApp: +20 109 914 8624</span>
-            </a>
-            <a href="mailto:muhammed.shereaf@gmail.com?subject=أوافق%20علي%20الشروط%20والاحكام" className="contact-link email">
+            {whatsappUrl ? (
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link whatsapp"
+              >
+                <span className="contact-icon"><FaWhatsapp /></span>
+                <span>WhatsApp: {whatsappNumber || whatsappUrl}</span>
+              </a>
+            ) : null}
+            <a href={`mailto:${email}`} className="contact-link email">
               <span className="contact-icon"><FaEnvelope /></span>
-              <span>muhammed.shereaf@gmail.com</span>
+              <span>{email}</span>
             </a>
           </div>
         </section>
@@ -190,3 +255,4 @@ function Terms() {
 }
 
 export default Terms;
+

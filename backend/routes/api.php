@@ -1,0 +1,13 @@
+<?php
+
+use App\Http\Controllers\Api\PortfolioContentController;
+use App\Http\Controllers\Api\ServiceBookingController;
+use App\Http\Controllers\Api\AdminAuthController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/portfolio/content', [PortfolioContentController::class, 'show']);
+Route::middleware('auth:sanctum')->put('/portfolio/content', [PortfolioContentController::class, 'update']);
+Route::post('/services/bookings', [ServiceBookingController::class, 'store']);
+Route::post('/admin/login', [AdminAuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/admin/profile', [AdminAuthController::class, 'profile']);
+Route::middleware('auth:sanctum')->put('/admin/profile', [AdminAuthController::class, 'updateProfile']);
