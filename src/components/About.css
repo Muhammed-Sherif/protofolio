@@ -13,14 +13,13 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  align-items: start;
 }
 
 .about-body {
   font-size: 1.05rem;
   line-height: 1.8;
   color: rgba(229, 234, 255, 0.82);
+  text-align: center;
 }
 
 .about-highlights {
@@ -29,6 +28,7 @@
   margin: 0;
   display: grid;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .about-highlights li {
