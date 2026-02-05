@@ -60,7 +60,7 @@ export const defaultContent = {
       description:
         'Full-featured online store built with Laravel backend and React frontend. Features include cart management, payment integration, and admin dashboard.',
       thumbnail:
-        '/ecommerce.png',
+        'ecommerce.png',
       link: 'https://ecommerce-project.mohamed-sherif.site',
       tags: ['Laravel', 'React', 'MySQL', 'Paymob']
     },

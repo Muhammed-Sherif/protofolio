@@ -180,7 +180,7 @@ function Services({ servicesSection, services, showForm = true, initialSelected 
             <p className="signature-role">Laravel Backend Developer</p>
             <p className="signature-email"><strong>E:</strong> muhammed.shereaf@gmail.com</p>
             <div className="signature-actions">
-              <img className="signature-bird" src="/public/Freelancer.png" alt="" />
+              <img className="signature-bird" src="Freelancer.png" alt="" />
               <a className="signature-hire" href="https://www.freelancer.com/affiliates/email/82862381/" target="_blank" rel="noopener noreferrer">Hire me on Freelancer.com</a>
               <img src="//t.flnwdgt.com/1px.gif?username=Mohamedshereaf&en=externalHireme&method=img&label=hiremeEmailImpression&ip=156.198.26.222&type=emailSignature" alt="" style={{ display: 'none' }} />
             </div>
