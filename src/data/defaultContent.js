@@ -5,10 +5,10 @@ export const defaultContent = {
     description:
       "I deliver high-quality, scalable solutions that combine powerful backend architecture with stunning, responsive frontends. Let's bring your vision to life.",
     imageUrl: '/profile.jpg',
-    ctaPrimaryText: 'View My Work',
-    ctaPrimaryUrl: '#projects',
-    ctaSecondaryText: 'Get In Touch',
-    ctaSecondaryUrl: '#contact'
+    ctaPrimaryText: 'Book a Service',
+    ctaPrimaryUrl: '/booking',
+    ctaSecondaryText: 'View My Work',
+    ctaSecondaryUrl: '#projects'
   },
   about: {
     title: 'About Me',
@@ -60,9 +60,9 @@ export const defaultContent = {
       description:
         'Full-featured online store built with Laravel backend and React frontend. Features include cart management, payment integration, and admin dashboard.',
       thumbnail:
-        'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop',
-      link: 'https://github.com/yourusername/project1',
-      tags: ['Laravel', 'React', 'MySQL', 'Stripe']
+        '../../public/ecommerce.png',
+      link: 'https://ecommerce-project.mohamed-sherif.site',
+      tags: ['Laravel', 'React', 'MySQL', 'Paymob']
     },
     {
       id: 2,

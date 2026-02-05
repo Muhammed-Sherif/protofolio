@@ -1,16 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+declare(strict_types=1);
 
-use App\Http\Controllers\Controller;
-use App\Models\ServiceBooking;
-use Illuminate\Http\Request;
+namespace App\Modules\Booking\Presentation\Http\Requests;
 
-class ServiceBookingController extends Controller
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreBookingRequest extends FormRequest
 {
-    public function store(Request $request)
+    public function authorize(): bool
     {
-        $validated = $request->validate([
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
             'service_title' => ['required', 'string', 'max:255'],
             'service_price' => ['nullable', 'string', 'max:255'],
             'service_duration' => ['nullable', 'string', 'max:255'],
@@ -20,13 +25,6 @@ class ServiceBookingController extends Controller
             'preferred_date' => ['nullable', 'date'],
             'preferred_time' => ['nullable', 'date_format:H:i'],
             'notes' => ['nullable', 'string'],
-        ]);
-
-        $booking = ServiceBooking::create($validated);
-
-        return response()->json([
-            'message' => 'Booking received',
-            'booking' => $booking,
-        ], 201);
+        ];
     }
 }

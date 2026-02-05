@@ -90,6 +90,28 @@
   width: 100%;
 }
 
+.nav-link.nav-cta {
+  background: #ffffff;
+  color: #0b0f1c;
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link.nav-cta::after {
+  display: none;
+}
+
+.nav-link.nav-cta:hover {
+  color: #0b0f1c;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.25);
+}
+
 @media (max-width: 900px) {
   .header {
     padding: 1rem;
@@ -128,6 +150,12 @@
 
   .nav-link {
     font-size: 0.9rem;
+  }
+
+  .nav-link.nav-cta {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }
 

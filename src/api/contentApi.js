@@ -74,3 +74,27 @@ export const updateAdminProfile = async (payload) =>
       : {},
     body: JSON.stringify(payload),
   });
+
+export const fetchServiceBookings = async () =>
+  request(`${API_BASE}/api/services/bookings`, {
+    headers: getAdminToken()
+      ? { Authorization: `Bearer ${getAdminToken()}` }
+      : {},
+  });
+
+export const updateServiceBooking = async (bookingId, payload) =>
+  request(`${API_BASE}/api/services/bookings/${bookingId}`, {
+    method: 'PUT',
+    headers: getAdminToken()
+      ? { Authorization: `Bearer ${getAdminToken()}` }
+      : {},
+    body: JSON.stringify(payload)
+  });
+
+export const deleteServiceBooking = async (bookingId) =>
+  request(`${API_BASE}/api/services/bookings/${bookingId}`, {
+    method: 'DELETE',
+    headers: getAdminToken()
+      ? { Authorization: `Bearer ${getAdminToken()}` }
+      : {},
+  });

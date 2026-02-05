@@ -47,18 +47,23 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border-radius: 50%;
+  border-radius: 8px;
   display: grid;
   place-items: center;
+  font-size: 1.25rem;
+  transition: all 0.2s ease;
 }
 
-.icon-circle {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #e6ecff;
-  display: inline-block;
-  box-shadow: 0 0 0 6px rgba(120, 140, 255, 0.2);
+.icon-button:hover {
+  background: rgba(120, 140, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.icon-dots {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(219, 233, 255, 0.9);
+  letter-spacing: -2px;
 }
 
 .account-dropdown {
@@ -248,7 +253,6 @@
 .project-card {
   background: rgba(8, 10, 20, 0.7);
   border-radius: 16px;
-  padding: 1.5rem;
   border: 1px solid rgba(90, 102, 220, 0.3);
 }
 
@@ -264,8 +268,89 @@
   color: rgba(225, 231, 255, 0.7);
 }
 
+.bookings-table {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.bookings-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(15, 20, 38, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bookings-table thead {
+  background: rgba(78, 89, 188, 0.15);
+  border-bottom: 1px solid rgba(120, 140, 255, 0.2);
+}
+
+.bookings-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: rgba(219, 233, 255, 0.9);
+  font-size: 0.875rem;
+}
+
+.bookings-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(225, 231, 255, 0.85);
+}
+
+.bookings-table tbody tr:hover {
+  background: rgba(78, 89, 188, 0.08);
+}
+
+.bookings-table select {
+  background: rgba(15, 20, 38, 0.8);
+  color: rgba(219, 233, 255, 0.9);
+  border: 1px solid rgba(120, 140, 255, 0.3);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.bookings-table select:focus {
+  outline: none;
+  border-color: rgba(120, 140, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(120, 140, 255, 0.1);
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.btn-danger {
+  background: rgba(220, 53, 69, 0.8);
+  color: #fff;
+  border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(220, 53, 69, 1);
+  border-color: rgba(220, 53, 69, 0.8);
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 720px) {
   .dashboard {
     padding: 2.5rem 1.5rem;
   }
+
+  .bookings-table {
+    font-size: 0.75rem;
+  }
+
+  .bookings-table th,
+  .bookings-table td {
+    padding: 0.5rem;  }
 }

@@ -61,6 +61,54 @@
   gap: 1rem;
 }
 
+/* Signature & separator styles */
+.services-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 22px 0;
+}
+.separator-line {
+  flex: 1 1 120px;
+  height: 1px;
+  background: #e6e6e6;
+  max-width: 220px;
+}
+.separator-or {
+  color: #666;
+  font-weight: 600;
+  padding: 0 8px;
+  text-transform: lowercase;
+}
+
+.email-signature {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.signature-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(19, 24, 32, 0.06);
+}
+.signature-avatar {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.signature-info { min-height: 40px; }
+.signature-name { text-decoration: underline; font-weight: 700; color: inherit; }
+.signature-role { margin: 4px 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.signature-email { margin: 0; }
+.signature-actions { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.signature-bird { width: 20px; height: 20px; }
+.signature-hire { text-decoration: underline; color: #0b5fff; }
+
 .service-form label {
   display: flex;
   flex-direction: column;

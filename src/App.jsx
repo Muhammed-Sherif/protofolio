@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Booking from './components/Booking';
 import Terms from './components/Terms';
 import Dashboard from './components/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
@@ -64,6 +65,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home content={hydratedContent} />} />
+          <Route path="/booking" element={<Booking content={hydratedContent} />} />
           <Route
             path="/terms"
             element={<Terms terms={hydratedContent.terms} contact={hydratedContent.contact} />}

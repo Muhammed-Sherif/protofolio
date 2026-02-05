@@ -1,5 +1,5 @@
 ﻿import { useEffect, useMemo, useState } from 'react';
-import { fetchAdminProfile, loginAdmin, updateAdminProfile } from '../api/contentApi';
+import { fetchAdminProfile, loginAdmin, updateAdminProfile, fetchServiceBookings, updateServiceBooking, deleteServiceBooking } from '../api/contentApi';
 import './Dashboard.css';
 
 const emptyProject = () => ({
@@ -42,6 +42,10 @@ function Dashboard({
   });
   const [profileStatus, setProfileStatus] = useState('');
   const [profileSaving, setProfileSaving] = useState(false);
+  const [bookings, setBookings] = useState([]);
+  const [bookingsLoading, setBookingsLoading] = useState(false);
+  const [bookingsError, setBookingsError] = useState('');
+  const [updatingBooking, setUpdatingBooking] = useState(null);
 
   useEffect(() => {
     setDraft(content);
@@ -66,6 +70,26 @@ function Dashboard({
     };
 
     loadProfile();
+  }, [token]);
+
+  useEffect(() => {
+    const loadBookings = async () => {
+      if (!token) {
+        return;
+      }
+      setBookingsLoading(true);
+      setBookingsError('');
+      try {
+        const data = await fetchServiceBookings();
+        setBookings(Array.isArray(data) ? data : data?.bookings || []);
+      } catch (error) {
+        setBookingsError(error?.message || 'Unable to load bookings.');
+      } finally {
+        setBookingsLoading(false);
+      }
+    };
+
+    loadBookings();
   }, [token]);
 
   const projectList = useMemo(() => draft?.projects || [], [draft]);
@@ -152,6 +176,37 @@ function Dashboard({
       ...prev,
       services: prev.services.filter((service) => service.id !== id)
     }));
+  };
+
+  const updateBookingStatus = async (bookingId, status) => {
+    setUpdatingBooking(bookingId);
+    try {
+      await updateServiceBooking(bookingId, { status });
+      setBookings((prev) =>
+        prev.map((booking) =>
+          booking.id === bookingId ? { ...booking, status } : booking
+        )
+      );
+    } catch (error) {
+      setBookingsError(error?.message || 'Unable to update booking.');
+    } finally {
+      setUpdatingBooking(null);
+    }
+  };
+
+  const deleteBooking = async (bookingId) => {
+    if (!window.confirm('Are you sure you want to delete this booking?')) {
+      return;
+    }
+    setUpdatingBooking(bookingId);
+    try {
+      await deleteServiceBooking(bookingId);
+      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
+    } catch (error) {
+      setBookingsError(error?.message || 'Unable to delete booking.');
+    } finally {
+      setUpdatingBooking(null);
+    }
   };
 
   const handleSave = async () => {
@@ -297,7 +352,7 @@ function Dashboard({
               onClick={() => setAccountMenuOpen((prev) => !prev)}
               aria-label="Account menu"
             >
-              <span className="icon-circle" aria-hidden="true">•</span>
+              <span className="icon-dots" aria-hidden="true">⋮</span>
             </button>
             {accountMenuOpen ? (
               <div className="account-dropdown">
@@ -358,6 +413,13 @@ function Dashboard({
           onClick={() => setActiveTab('terms')}
         >
           Terms
+        </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === 'bookings' ? 'active' : ''}`}
+          onClick={() => setActiveTab('bookings')}
+        >
+          Bookings
         </button>
       </div>
 
@@ -768,6 +830,62 @@ function Dashboard({
               onChange={(event) => updateSection('terms', 'contentHtmlAr', event.target.value)}
             />
           </label>
+        </div>
+
+        <div className={`dashboard-card ${activeTab === 'bookings' ? 'is-active' : 'is-hidden'}`}>
+          <h2>Service Bookings</h2>
+          {bookingsError ? <p className="dashboard-status error">{bookingsError}</p> : null}
+          {bookingsLoading ? <p className="dashboard-status">Loading bookings...</p> : null}
+          {!bookingsLoading && bookings.length === 0 ? (
+            <p className="dashboard-status">No bookings yet.</p>
+          ) : (
+            <div className="bookings-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client Name</th>
+                    <th>Email</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bookings.map((booking) => (
+                    <tr key={booking.id}>
+                      <td>{booking.client_name}</td>
+                      <td>{booking.client_email}</td>
+                      <td>{booking.service_title}</td>
+                      <td>{booking.preferred_date || '-'}</td>
+                      <td>
+                        <select
+                          value={booking.status || 'pending'}
+                          onChange={(e) => updateBookingStatus(booking.id, e.target.value)}
+                          disabled={updatingBooking === booking.id}
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="confirmed">Confirmed</option>
+                          <option value="completed">Completed</option>
+                          <option value="cancelled">Cancelled</option>
+                        </select>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-small btn-danger"
+                          onClick={() => deleteBooking(booking.id)}
+                          disabled={updatingBooking === booking.id}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
 
         <div className={`dashboard-card ${activeTab === 'profile' ? 'is-active' : 'is-hidden'}`}>
